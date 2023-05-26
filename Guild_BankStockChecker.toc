@@ -1,0 +1,9 @@
+## Interface: 100100
+## Title: Guild bank addon
+## Notes: This addon is to keep track of stock in a guild bank command is /check
+## Author: Fickovic
+## Version: 0.0.1
+
+# HelloWorld.lua
+# GuildBank.lua
+modules.xml

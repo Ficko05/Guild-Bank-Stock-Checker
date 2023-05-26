@@ -1,0 +1,18 @@
+{
+    "Lua.diagnostics.disable": [
+        "unused-function"
+    ],
+    "Lua.diagnostics.globals": [
+        "SlashCmdList",
+        "message",
+        "UnitName",
+        "GetGuildBankItemInfo",
+        "C_BattleNet",
+        "GetItemInfo",
+        "GetGuildBankItemLink",
+        "GetGuildBankTabInfo",
+        "BackdropTemplateMixin",
+        "GetItemCount",
+        "wipe"
+    ]
+}
