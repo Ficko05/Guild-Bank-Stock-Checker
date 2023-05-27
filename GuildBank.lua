@@ -1,4 +1,3 @@
-
 SLASH_BANK1 = '/banks'
 
 SLASH_SCAN1 = '/scans'
@@ -11,16 +10,15 @@ local tabID = 3                        -- Replace with the desired guild bank ta
 local MAX_GUILDBANK_SLOTS_PER_TAB = 98 -- Replace with the correct guild bank slots
 
 
-
 local function GetItemNameFromItemLink(itemLink)
     local itemName = itemLink:match("%|h%[(.-)%]|h")
     return itemName
 end
 
 
-local function getStock(itemKey)
-    if ItemsTable[itemKey] then
-        return ItemsTable[itemKey]
+local function getStock(itemKey, tablename)
+    if tablename[itemKey] then
+        return tablename[itemKey]
     else
         print("nothing: ", itemKey)
         return 0 -- Return 0 if the item key is not found in the table
@@ -62,15 +60,15 @@ end
 
 
 local function CheckStockNeeded()
-    
     -- local val = GetItemNameFromItemLink(GetItemLinkFromGuildIDSlot(1))
     -- print(val)
-    
+
     -- table.wipe(tempTable)
     
-    -- local tempTable = ItemsTable
-    local tempTable = {}
-   
+
+    local tempTable = ItemsTable
+    -- local tempTable = {}
+
 
 
     for slotID = 1, MAX_GUILDBANK_SLOTS_PER_TAB do
@@ -86,7 +84,7 @@ local function CheckStockNeeded()
             local ItemName = getItemNameFromID(ItemID)
 
             -- gets stock value from key "itemName"
-            local StockFromTable = getStock(ItemName)
+            local StockFromTable = getStock(ItemName, ItemsTable)
 
             -- gets Tempstock value from key "itemName"
             -- local StockFromTempTable = getStockTemp(ItemName, tempTable)
@@ -98,12 +96,9 @@ local function CheckStockNeeded()
             -- Checking values in development
             -- local StockFromTempTable = getStockTemp(ItemName, tempTable)
             -- print("name: ", ItemName, " StockFromTempTable: ", StockFromTempTable)
-
-            
         end
-
     end
-    
+
 
     for itemNames, quantity in pairs(tempTable) do
         if quantity > 0 then
@@ -120,15 +115,17 @@ local function CheckStockNeeded()
             end
         end
     end
-    
+
     print("----------------------------------------------")
     -- local tempTable = ItemsTable
-    wipe(tempTable)
-
+    -- wipe(tempTable)
 end
 
 
--- Everything below here was just for testing and pretesting 
+
+SlashCmdList["CHECK"] = CheckStockNeeded
+
+-- Everything below here was just for testing and pretesting
 -- --------------------------
 
 
@@ -204,8 +201,6 @@ local function Guild(numb)
 end
 
 
-
 SlashCmdList["BANK"] = Guild
 SlashCmdList["SCAN"] = IterateOverTabSlots
 -- SlashCmdList["TESTERS"] = Testers
-SlashCmdList["CHECK"] = CheckStockNeeded
