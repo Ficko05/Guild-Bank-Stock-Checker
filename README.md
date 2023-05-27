@@ -6,4 +6,11 @@ The data.lua table is a list of all the stock information {name, stack}. The nam
 
 the command to run ingame is /check
 
+
+## Isssues
+
+There is an issue where the /check command can only run once. If you try to do it again, it won't work properly.
+
+The bypass needs a /reload command before it can run the /check command properly again.
+
 have fun
