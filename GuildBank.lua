@@ -101,7 +101,7 @@ local function CheckStockNeeded()
 
 
     for itemNames, quantity in pairs(tempTable) do
-        if quantity >= 0 then
+        if quantity > 0 then
             for slotID = 1, MAX_GUILDBANK_SLOTS_PER_TAB do
                 local itemLink = GetGuildBankItemLink(tabID, slotID)
                 if itemLink then
